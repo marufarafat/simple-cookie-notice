@@ -1,3 +1,10 @@
+<?php
+if(isset($_GET['done_reading'])){
+    setcookie("done_reading", "true", time() + 31536000);
+    header("Location: ./");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -73,10 +80,9 @@
     </div>
     <!-- /.container -->
 
+   <?php if ( !isset($_COOKIE['done_reading']) ) : ?>
     <!-- modal html-->
     <div class="container">
-      <!-- Trigger the modal with a button -->
-      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#dexModal">Open Modal</button>
 
       <!-- Modal -->
       <div class="modal fade" id="dexModal" role="dialog">
@@ -89,11 +95,10 @@
               <h4 class="modal-title">Modal Header</h4>
             </div>
             <div class="modal-body">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim eveniet vero quas culpa dolor eos quos molestiae quo? Quisquam porro, dolores impedit eius odit veritatis temporibus minus explicabo? Fugit, culpa!</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim eveniet vero quas culpa dolor eos quos molestiae quo? Quisquam porro, dolores impedit eius odit veritatis temporibus minus explicabo? Fugit, culpa! <a href="#">Read more..</a></p>
             </div>
             <div class="modal-footer">
-              <a href="?accept_notice" type="button" class="btn btn-danger" data-dismiss="modal">Close</a>
-                <a href="http://google.com" class="btn btn-primary">Read more</a>
+              <a href="?done_reading" class="btn btn-danger">Ok, Continue</a>
             </div>
           </div>
 
@@ -106,6 +111,7 @@
             $('#dexModal').modal();
         }, 2000)
     </script>
+   <?php endif; ?>
    
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
